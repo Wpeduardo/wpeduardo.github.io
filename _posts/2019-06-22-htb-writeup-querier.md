@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Querier - Hack The Box
+title: Querier - Try
 excerpt: "To solve Querier, we find an Excel spreadsheet that contains a VBA macro then use Responder to capture NTLM hashes from the server by forcing it to connect back to our machine with `xp_dirtree`. After cracking the hash, we gain RCE on the server by using the standard `xp_cmdshell` command. The Administator credentials are found in a Group Policy Preference file."
 date: 2019-06-22
 classes: wide
