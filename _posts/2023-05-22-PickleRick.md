@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Pickle Rick - TryHackMe
-excerpt: "En este caso debemos encontrar tres banderas,que vienen a ser ingredientes,y que estan ubicadas en la maquina PickleTrick.Donde realizaremos fuzzing directory con wfuzz o con el script http-enum.nse de nmap. LLegando a encontrar una aplicacion web,cuyo codigo fuente tiene un comentario que hace referencia a un username,y un archivo escondido en el directorio raiz de la aplicacion web, que contenia una credencial.Luego, nos autenticamos en el formulario de la aplicacion web.Donde llegamos a establecer una conexion reverse shell hacia nuestra maquina aprovechandonos de la vulnerabilidad Command Injection de la aplicacion, y utilizando el archivo binario awk o perl.Luego, realizamos una escalada de privilegios mediante el archivo binario sudo." 
+excerpt: "En este caso debemos encontrar tres banderas,que vienen a ser ingredientes,y que estan ubicadas en la maquina PickleTrick.Donde realizaremos fuerza bruta de directorios de manera automatizada con wfuzz o con el script http-enum.nse de nmap. LLegando a encontrar una aplicacion web,cuyo codigo fuente tiene un comentario que hace referencia a un username,y un archivo escondido en el directorio raiz de la aplicacion web, que contenia una credencial.Luego, nos autenticamos en el formulario de la aplicacion web.Donde llegamos a establecer una conexion reverse shell hacia nuestra maquina aprovechandonos de la vulnerabilidad Command Injection de la aplicacion, y utilizando el archivo binario awk o perl.Luego, realizamos una escalada de privilegios mediante el archivo binario sudo." 
 date: 2023-05-22
 classes: wide
 header:
@@ -145,7 +145,7 @@ Ahora ejecutaremos el siguiente comando, que nos generará una conexión reverse
 
 ![](/assets/images/PickleRick/image67.png)
 
-Pero observamos que no se nos genera una shell en el sistema objetivo, como resultado de la conexion reverse shell.La primera hipótesis que podemos hacer es que la aplicación web está filtrando los comandos que utilizan el archivo php. Para verificar esta hipótesis, utilizamos BurpSuite para capturar la solicitud POST HTML que hacemos al servidor web, para que cargue nuestro archivo PHP. Luego enviaremos la solicitud capturada a la ventana Repeater para poder observar la respuesta HTML que recibimos del servidor web.
+Pero observamos que no se nos genera una shell en el sistema objetivo, como resultado de la conexion reverse shell.La primera hipótesis que podemos hacer es que la aplicación web está filtrando los comandos que utilizan el archivo php. Para verificar esta hipótesis, utilizamos `BurpSuite` para capturar la solicitud POST HTML que hacemos al servidor web, para que cargue nuestro archivo PHP. Luego enviaremos la solicitud capturada a la ventana Repeater para poder observar la respuesta HTML que recibimos del servidor web.
 
 ![](/assets/images/PickleRick/image69.png)
 
