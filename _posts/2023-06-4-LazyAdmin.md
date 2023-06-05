@@ -53,8 +53,8 @@ Además, la plataforma de Tryhackme nos muestra la dirección de la máquina Laz
 
 Luego pasaremos a la fase de Escaneo y Enumeración con el fin de poder escanear los puertos del nodo. Además, obtendremos los servicios que se han levantado en los puertos abiertos, las versiones de los servicios, y el sistema operativo de la máquina LazyAdminFinal.Para ello utilizaremos `Nmap`.Donde le pasaremos los siguientes parametros:
 
-- El parametro -sC o –script=”default” para utilizar todos los scripts de la categoría default con el fin de realizar un escaneo y detección de los puertos de manera avanzada.
-- Los parametros -O y -sV con el fin de conocer el sistemas operativos del nodo y las versiones de los servicios levantados.
+- El parametro -sC  o –script=”default” para utilizar todos los scripts de la categoría default con el fin de realizar un escaneo y detección de los puertos de manera avanzada.
+- El -sV con el fin de conocer el sistemas operativos del nodo y las versiones de los servicios levantados.
 - El parametro -n para evitar la resolución DNS, y el parametro –min-rate para indicarle el número de paquetes por segundo que va utilizar Nmap para el escaneo con el fin de evitar sobrecargar la red con el tráfico generado por Nmap.
 - El parametro -p- para realizar un escaneo de los 65535 puertos del nodo y el parametro –open con el fin de que nos muestre información solo de los puertos abiertos.
 
@@ -66,7 +66,7 @@ Los resultados que obtuvimos del escaneo vienen a ser:
 - Hay un servicio `HTTP` que se esta levantado en el puerto 80, y el  programa servidor HTTP que se esta corriendo.Además, la versión del programa servidor HTTP.
 - Hay un servicio `SSH` que se esta levantado en el puerto 22, y el  programa servidor SSH se está corriendo.Además, la versión del programa servidor SSH.
 
-Ahora ejecutaremos los scripts de nmap de la categoría vuln con el fin de conocer las vulnerabilidades de los servicios que están levantados en los puertos abiertos.
+Ahora ejecutaremos los scripts de Nmap de la categoría vuln con el fin de conocer las vulnerabilidades de los servicios que están levantados en los puertos abiertos.
 
 ![](/assets/images/LazyAdmin/image015.png)
 
@@ -143,20 +143,16 @@ Ahora utilizaremos `john the ripper` para realizar el crackeo del hash. Donde le
 
 Llegamos a encontrar la credencial Password123.
 
+Otra manera de encontrar la credencial seria a traves del sitio web `Crackstation` que consta de una base de datos de hashes de contraseñas. Por lo tanto, al momento de ingresar nuestro hash, el sitio web lo va comparar con los hashes de su base de datos,y si coinciden con algun hash nos va mostrar la contraseña y la funcion o algoritmo hash que utilizaba el hash.
+
+![](/assets/images/LazyAdmin/image1.png)
 
 
 
 
-Donde llegamos a observar que el recurso obtenido anteriormente, viene a ser la página de inicio predeterminada del Sistema de Gestión de Contenido `CMSMadesimple`, que permite crear y administrar aplicaciones web sin tener conocimientos avanzados en programación web.
-Además,llegamos a obtener la versión del CMS que se tiene almacenada en el servidor web de la máquina EasyCTF.
 
-Además,llegamos a encontrar la palabra here, que nos dirige a otro recurso.
+Otra manera que p
 
-![](/assets/images/EasyCTF/image039.png)
-
-Este recurso viene a ser un formulario en el cual debo ingresar las credenciales del administrador del CMS.
-
-## Fase Ganar Acceso o Explotacion
 Ahora buscaremos un exploit para la versión 2.2.8 de CMS Made simple en la base de datos de `Metasploit` a través del comando searchsploit.
 
 ![](/assets/images/EasyCTF/image041.png)
