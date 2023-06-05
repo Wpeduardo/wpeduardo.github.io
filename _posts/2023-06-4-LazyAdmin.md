@@ -191,7 +191,7 @@ Ahora accederemos al recurso _themes a través de mi navegador web para verifica
 
 Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante.
 
-![](/assets/images/LazyAdmin/image063.png)
+![](/assets/images/LazyAdmin/image055.png)
 
 Ahora, accederemos al recurso _themes. Donde daremos clic al script php para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
@@ -205,79 +205,58 @@ En este caso modificaremos el contenido del archivo comment_form.php con el scri
 
 Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante.
 
-![](/assets/images/LazyAdmin/image069.png)
+![](/assets/images/LazyAdmin/image055.png)
 
 Ahora, accederemos subdirectorio default, que contiene los archivos de codigo fuente del theme. Donde daremos clic al comment_form.php para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
-![](/assets/images/LazyAdmin/image071.png)
+![](/assets/images/LazyAdmin/image059.png)
 
+![](/assets/images/LazyAdmin/image073.png)
 
+## Fase Escalada de privilegios
 
-## Fase Escalada de privilegios 
-Ahora pasaremos a la fase de escalada de privilegios.Para ello buscaremos archivos binarios con permiso `SUID`, que nos va permitir tener los privilegios del propietario, que venga a ser root, del archivo cuando lo ejecutamos.
+Nos damos cuenta que hemos obtenido acceso siendo el usuario www-data, y observando el contenido del archivo /etc/passwd nos percatamos que al usuario www-data se le he configurado una shell nologin que viene a ser una shell no interactiva para limitar al usuario en la ejecución de ciertos comandos que requieren una tty. Por lo tanto, debemos buscar una vector de escalada de privilegios. 
 
-![](/assets/images/EasyCTF/image077.png)
+Ahora utilizamos el siguiente comando para observar que programas puedo ejecutar con el comando sudo, y con los privielgios del usuario root.
 
-![](/assets/images/EasyCTF/image079.png)
+![](/assets/images/LazyAdmin/image075.png)
 
-Nos damos cuenta que el el archivo binario `pkexec` tiene permiso SUID. Por lo tanto, a través de este archivo binario ejecutable puede ejecutar comandos teniendo el privilegios del usuario root. 
-Ahora para explotar este archivo binario vamos a utilizar un script, que utiliza el marco de autorización `Polkit`(o PolicyKit) y lo podemos encontrar en el repositorio https://github.com/berdav/CVE-2021-4034
+Observamos que podemos ejecutar el archivo Perl backup.pl con el archivo binario Perl teniendo los privilegios del usuario root. 
 
-Polkit en sí viene a ser un componente utilizado para controlar los privilegios de todo el sistema en sistemas operativos similares a Unix.Además, proporciona una forma organizada para que los procesos no privilegiados se comuniquen con los privilegiados.
-Además, es posible usar Polkit para ejecutar comandos con privilegios elevados usando el comando pkexec seguido del comando que se pretende ejecutar (con permiso de root).
+Ahora, observaremos el contenido del archivo backup.pl.
 
-Ahora vamos a clonar el repositorio en mi maquina. 
+![](/assets/images/LazyAdmin/image077.png)
 
-![](/assets/images/EasyCTF/image081.png)
+Vemos que el archivo perl contiene un script perl con los siguientes comandos:
+- #!/usr/bin/perl: Esta línea es conocida como shebang y se utiliza para indicar al sistema operativo que debe usar el intérprete de Perl para ejecutar este script.
+- system("sh", "/etc/copy.sh");: La función system() se utiliza para ejecutar comandos en el sistema operativo. En este caso, se está ejecutando el comando sh /etc/copy.sh. Esto significa que se está ejecutando el script copy.sh utilizando el intérprete de shell (sh).
 
-Luego vamos a levantar un servidor web en mi maquina.Ademas, lo voy a levantar en el directorio que contiene el directorio CVE-2021-4034 con el fin de poder descargar el directorio CVE-2021-4034 desde la shell nologin que tenemos en la máquina EasyCTF.
+Ahora observaremos el contenido del script copy.sh. 
 
-![](/assets/images/EasyCTF/image083.png)
+![](/assets/images/LazyAdmin/image079.png)
 
-![](/assets/images/EasyCTF/image085.png)
+![](/assets/images/LazyAdmin/image081.png)
 
-Ahora accedemos al directorio CVE-2021-4034. 
+Donde observamos un comando que crea un FIFO, que es un mecanismo de comunicación entre procesos que permite enviar datos de manera unidireccional, para establecer la conexión de shell inversa y utiliza el comando nc para redirigir los datos de salida de la shell hacia un host remoto.
 
-![](/assets/images/EasyCTF/image087.png)
+Ahora, aprovechando que el script copy.sh puede tiene el permiso de ser editable para los usuarios que pertenecen a un grupo diferente al grupo primario del usuario root, modificaremos la dirrecion ip de ese host remoto a la nuestra para que se genera la conexion reverse shell con nuestra maquina.
 
-Donde observamos un archivo llamado Makefile, que contiene un conjunto de instrucciones. Para ejecutar las instrucciones de este archivo utilizó el comando make.
+![](/assets/images/LazyAdmin/image083.png)
 
-![](/assets/images/EasyCTF/image089.png)
+Nos damos cuenta que no podemos modificar el contenido del script con el comando nano ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando echo con el fin de redirigir la cadena de caractere que digitamos hacia el script.
 
-Luego observamos que se me genera un archivo ejecutable CVE-2021-4034, que viene a ser el script que usaremos para explotar el archivo binario pkexec.
+![](/assets/images/LazyAdmin/image085.png)
 
-![](/assets/images/EasyCTF/image091.png)
+Ahora habilitamos el puerto 1700 en nuestra máquina para que esté en escucha y esperando la conexión entrante
 
-Luego ejecutamos el script.
+![](/assets/images/LazyAdmin/image087.png)
 
-![](/assets/images/EasyCTF/image093.png)
+Ahora ejecutaremos el archivo backup.pl con el archivo binario perl y con el archivo binario sudo para ejecutarlo con los privilegios del usuario root.
 
-De esta manera llegamos a ser el usuario root. Ahora vamos a buscar las dos banderas que nos solicitan.
+![](/assets/images/LazyAdmin/image089.png)
 
-![](/assets/images/EasyCTF/image095.png)
+De esta manera llegamos a ser el usuario root o superusuario.
 
-![](/assets/images/EasyCTF/image097.png)
+Luego, con el comando cat podremos observar el contenido de ambas banderas. 
 
-De esta manera llegamos a encontrar el contenido de las dos banderas.
-Otra manera que pudimos haber obtenido acceso a la máquina EasyCTF es utilizando la suposición que hicimos anteriormente(Que es muy probable que el administrador del sistema utilice las mismas credenciales en todo los servicios). Para verificar esto intentaremos establecer una conexión remota con el servidor SSH que tiene la maquina EasyCTF utilizando las credenciales encontradas en la aplicación web CMS Made simple.
-
-![](/assets/images/EasyCTF/image099.png)
-
-![](/assets/images/EasyCTF/image101.png)
-
-También llegamos obtener acceso a la máquina EasyCTF utilizando el servicio `SSH` que está levantado en el puerto 2222 de la máquina.
-Ahora, otra forma de escalar privilegios serían aprovechando que se tiene el archivo binario sudo.Además, al usuario mitch le han configurado con una shell interactiva(o bash) para cuando inicia sesión el sistema EasyCTF.
-
-![](/assets/images/EasyCTF/image103.png)
-
-Ahora que ya hemos verificado que existe el archivo `sudo`. Utilizaremos la bandera -l con el fin de listar los comandos que puede ejecutar el usuario actual con los privilegios del superusuario.
-![](/assets/images/EasyCTF/image105.png)
-
-Del resultado del comando, podemos concluir que podemos utilizar el archivo binario vim con el fin de  ejecutar comando teniendo los privilegios del superusuario.
-Ahora, utilizaremos el siguiente comando para que nos genere una shell sh siendo el usuario root.
-
-![](/assets/images/EasyCTF/image107.png)
-
-Esto viene a ser otra forma de llegar a ser el usuario root.
-
-
+![](/assets/images/LazyAdmin/image091.png)
