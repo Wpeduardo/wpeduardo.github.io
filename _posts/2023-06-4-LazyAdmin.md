@@ -39,89 +39,77 @@ En este caso debemos encontrar dos banderas ubicadas en la maquina LazyAdminFina
 
 Para resolver esta maquina empezaremos utilizando el comando `openvpn` con el fin de establecer una conexión VPN con la red virtual dónde está la máquina EasyCTF. Para ello utilizaremos el archivo de configuración, que lo podemos descargar en la plataforma de Tryhackme, que puede incluir información como la dirección del servidor VPN, los certificados y claves de seguridad, la configuración de encriptación, etc.
 
-![](/assets/images/EasyCTF/image005.png)
+![](/assets/images/LazyAdmin/image005.png)
 
 Luego de que se establece la conexión VPN se crea una interfaz virtual de red en nuestra máquina. Donde se enruta todo el tráfico de red a través de esa interfaz.
 
-![](/assets/images/EasyCTF/image007.png)
+![](/assets/images/LazyAdmin/image007.png)
 
-Además, la plataforma de Tryhackme nos muestra la dirección de la máquina  EasyCTF.
+Además, la plataforma de Tryhackme nos muestra la dirección de la máquina LazyAdminFinal.
 
-![](/assets/images/EasyCTF/image009.png)
+![](/assets/images/LazyAdmin/image009.png)
 
 ## Fase Escaneo y Enumeracion
 
-Luego pasaremos a la fase de Escaneo y Enumeración con el fin de poder escanear los puertos del nodo. Además, obtendremos los servicios que se han levantado en los puertos abiertos, las versiones de los servicios, y el sistema operativo de la máquina EasyCTF.Para ello utilizaremos `Nmap`.Donde le pasaremos los siguientes parametros:
+Luego pasaremos a la fase de Escaneo y Enumeración con el fin de poder escanear los puertos del nodo. Además, obtendremos los servicios que se han levantado en los puertos abiertos, las versiones de los servicios, y el sistema operativo de la máquina LazyAdminFinal.Para ello utilizaremos `Nmap`.Donde le pasaremos los siguientes parametros:
 
 - El parametro -sC o –script=”default” para utilizar todos los scripts de la categoría default con el fin de realizar un escaneo y detección de los puertos de manera avanzada.
 - Los parametros -O y -sV con el fin de conocer el sistemas operativos del nodo y las versiones de los servicios levantados.
 - El parametro -n para evitar la resolución DNS, y el parametro –min-rate para indicarle el número de paquetes por segundo que va utilizar Nmap para el escaneo con el fin de evitar sobrecargar la red con el tráfico generado por Nmap.
 - El parametro -p- para realizar un escaneo de los 65535 puertos del nodo y el parametro –open con el fin de que nos muestre información solo de los puertos abiertos.
-- El parametro -oN para guardar el resultado del escaneo en un archivo de texto plano 
 
-![](/assets/images/EasyCTF/image011.png)
+![](/assets/images/LazyAdmin/image011.png)
 
-![](/assets/images/EasyCTF/image013.png)
+![](/assets/images/LazyAdmin/image013.png)
 
-![](/assets/images/EasyCTF/image015.png)
+Los resultados que obtuvimos del escaneo vienen a ser:
+- Hay un servicio `HTTP` que se esta levantado en el puerto 80, y el  programa servidor HTTP que se esta corriendo.Además, la versión del programa servidor HTTP.
+- Hay un servicio `SSH` que se esta levantado en el puerto 22, y el  programa servidor SSH se está corriendo.Además, la versión del programa servidor SSH.
 
-A partir del resultado del escaneo, podemos decir que la máquina EasyCTF tiene habilitado el servicio FTP en el puerto 21.Donde se tiene un programa servidor FTP llamado vsftpd, cuya versión es 3.0.3. Además, podemos observar que utilizando el script ftp-syst.nse de Nmap se logro autenticar exitosamente al servidor FTP con los usuarios ftp y Anonymous.
+Ahora ejecutaremos los scripts de nmap de la categoría vuln con el fin de conocer las vulnerabilidades de los servicios que están levantados en los puertos abiertos.
 
-Ahora vamos a usar el comando `ftp` para autenticarnos al servidor FTP con el usuario ftp con el fin de observar los archivos o directorios que está compartiendo el servidor FTP que tiene instalado la máquina EasyCTF.
+![](/assets/images/LazyAdmin/image015.png)
 
-![](/assets/images/EasyCTF/image017.png)
+![](/assets/images/LazyAdmin/image017.png)
 
-Llegamos a autenticarnos exitosamente. Además, nos proveen una shell para interactuar con el servidor FTP. 
+Podemos notar que se ha el utilizado script http-enum.nse de Nmap, que realiza un fuerza bruta de directorios con una lista de nombres posibles de directorios y archivos con el fin de encontrar archivos y directorios escondidos, llegandose a obtener el recurso content, que está almacenado en el directorio raíz del servidor web.
 
-Ahora utilizaremos el comando ls para listar los recursos que está compartiendo el servidor FTP.
+Ahora accederemos al recurso content a través de mi navegador web para observar su contenido.
 
-![](/assets/images/EasyCTF/image019.png)
+![](/assets/images/LazyAdmin/image019.png)
 
-Llegamos a encontrar el directorio compartido pub, cuyo contenido viene a ser 2 archivos.Además, podemos observar los permisos que tiene el propietario ftp y los usuarios que pertenecen al grupo ftp.
+Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada de la aplicacion web `SweetRice`,que viene a ser un sistema de gestion de contenido. y que nos permite crear y gestionar contenido en linea, que puede ser sitios o aplicaciones web.Por lo tanto, el servidor web esta alojando el CMS SweetRice.
 
-Ahora listamos el contenido del directorio pub.
+Ahora utilizaremos la herramienta wfuzz ,que también realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos, pero desde la ruta del recurso content para que la herramienta encuentre recursos escondidos en el directorio raiz de la aplicacion web SweetRice. Además, le pasaremos los siguientes parametros a la herramienta:
 
-![](/assets/images/EasyCTF/image021.png)
+![](/assets/images/LazyAdmin/image019.png)
 
-Llegamos a encontrar un archivo llamado ForMitch.txt. 
+![](/assets/images/LazyAdmin/image021.png)
 
-Ahora, descargamos este archivo con el comando get.Además, observaremos su contenido con el comando cat.
+Llegamos a obtener nuevos recursos escondidos en el directorio raiz de la aplicacion CMS SweetRice.
 
-![](/assets/images/EasyCTF/image023.png)
+Ahora accederemos al recurso js a través de mi navegador web para observar su contenido.
 
-![](/assets/images/EasyCTF/image025.png)
+![](/assets/images/LazyAdmin/image023.png)
 
-A partir del contenido del archivo ForMitch.txt, podemos concluir que el administrador del sistema tiende a establecer las mismas credenciales para todas las aplicaciones. Además, las credenciales establecidas por el administrador son débiles.
+Nos damos cuenta que el recurso js viene a ser un directory list que contiene archivos con extension .js. Por lo tanto, su codigo esta escrito en JavaScript.
 
-Además, a partir del nombre del archivo. Podemos suponer que el administrador del sistema se pueda llamar Mitch. Por lo tanto,Mitch puede ser un username. Esto lo vamos a verificar con los datos que vayamos recolectando en los siguientes pasos.
+Ahora accederemos al recurso _themes a través de mi navegador web para observar su contenido.
 
-Además,a partir del resultado del escaneo, podemos decir que la máquina EasyCTF tiene habilitado el servicio `HTTP` en el puerto 80.Donde se tiene un programa servidor HTTP llamado Apache, cuya versión es 2.4.18.
+![](/assets/images/LazyAdmin/image025.png)
 
-Ahora utilizaremos la herramienta `wfuzz` que realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos con el fin de encontrar directorios o archivos ocultos en el directorio raíz del servidor web. Además, utilizaremos la bandera –hc con el fin de filtrar los recursos que tenga un código de estado HTTP 403 y 404.
+Nos damos cuenta que el recurso _themes viene a ser un directory list.Donde lo mas probable es que se almacenen los `themes` que vayan a utilizar los sitios o aplicaciones web que se vayan a crear mediante el CMS.Por lo tanto, el subdirectorio default vendria a cotener todos los archivos del codigo fuente del theme que viene por defecto en el CMS.
 
-![](/assets/images/EasyCTF/image027.png)
+Ademas, los themes vienen a ser plantillas prediseñadas que determinan la apariencia visual y el diseño de un sitio o aplicacion web.
 
-![](/assets/images/EasyCTF/image029.png)
+Ahora accederemos al recurso attachment  a través de mi navegador web para observar su contenido.
 
-Llegamos a encontrar el recurso llamado simple en el directorio raíz del servidor web instalado en la máquina EasyCTF. 
 
-Además, utilizare el script http-enum.nse, que también realiza fuerza bruta de directorios con una lista de nombres posibles de directorios y archivos con el fin de encontrar archivos y directorios escondidos.
 
-![](/assets/images/EasyCTF/image031.png)
 
-Llegamos a obtener el archivo robots.txt, que viene a ser utilizado por los desarrolladores de sitios o aplicaciones webs para prohbir que los motores de busqueda muestren ciertos recursos del sitio o aplicacion web en sus resultados de busqueda.
 
-Ahora, accederemos al archivo robots.txt a través del navegador web.
 
-![](/assets/images/EasyCTF/image033.png)
 
-No llegamos a obtener ninguna informacion relevante.
-
-Ahora, accederemos al recurso simple a través del navegador web.
-
-![](/assets/images/EasyCTF/image035.png)
-
-![](/assets/images/EasyCTF/image037.png)
 
 Donde llegamos a observar que el recurso obtenido anteriormente, viene a ser la página de inicio predeterminada del Sistema de Gestión de Contenido `CMSMadesimple`, que permite crear y administrar aplicaciones web sin tener conocimientos avanzados en programación web.
 Además,llegamos a obtener la versión del CMS que se tiene almacenada en el servidor web de la máquina EasyCTF.
