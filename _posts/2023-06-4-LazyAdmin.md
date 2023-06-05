@@ -82,30 +82,66 @@ Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada d
 
 Ahora utilizaremos la herramienta wfuzz ,que también realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos, pero desde la ruta del recurso content para que la herramienta encuentre recursos escondidos en el directorio raiz de la aplicacion web SweetRice. Además, le pasaremos los siguientes parametros a la herramienta:
 
-![](/assets/images/LazyAdmin/image019.png)
-
 ![](/assets/images/LazyAdmin/image021.png)
+
+![](/assets/images/LazyAdmin/image023.png)
 
 Llegamos a obtener nuevos recursos escondidos en el directorio raiz de la aplicacion CMS SweetRice.
 
 Ahora accederemos al recurso js a través de mi navegador web para observar su contenido.
 
-![](/assets/images/LazyAdmin/image023.png)
+![](/assets/images/LazyAdmin/image025.png)
 
 Nos damos cuenta que el recurso js viene a ser un directory list que contiene archivos con extension .js. Por lo tanto, su codigo esta escrito en JavaScript.
 
 Ahora accederemos al recurso _themes a través de mi navegador web para observar su contenido.
 
-![](/assets/images/LazyAdmin/image025.png)
+![](/assets/images/LazyAdmin/image027.png)
 
 Nos damos cuenta que el recurso _themes viene a ser un directory list.Donde lo mas probable es que se almacenen los `themes` que vayan a utilizar los sitios o aplicaciones web que se vayan a crear mediante el CMS.Por lo tanto, el subdirectorio default vendria a cotener todos los archivos del codigo fuente del theme que viene por defecto en el CMS.
 
 Ademas, los themes vienen a ser plantillas prediseñadas que determinan la apariencia visual y el diseño de un sitio o aplicacion web.
 
-Ahora accederemos al recurso attachment  a través de mi navegador web para observar su contenido.
+Ahora accederemos al recurso attachment a través de mi navegador web para observar su contenido.
 
+![](/assets/images/LazyAdmin/image029.png)
 
+Nos damos cuenta que el recurso viene a ser un directory list vacio.
 
+Ahora accederemos al recurso as a través de mi navegador web para observar su contenido.
+
+![](/assets/images/LazyAdmin/image031.png)
+
+Nos damos cuenta que el recurso viene a ser un formulario o login para acceder a la plataforma del CMS SweetRice.
+
+Ahora accederemos al recurso inc a través de mi navegador web para observar su contenido.
+
+![](/assets/images/LazyAdmin/image033.png)
+
+![](/assets/images/LazyAdmin/image035.png)
+
+![](/assets/images/LazyAdmin/image037.png)
+
+Nos damos cuenta que el recurso inc viene a ser un directory list que contiene varios archivos php, ya que el codigo fuente de la aplicacion web esta escrito en `PHP`. 
+
+Ademas, encontramos un subidrectorio, que hace referencia a un respaldo de una base de datos `MySQL`. Donde encontramos un archivo de respaldo que se ha hecho de una base de datos MySQL. 
+
+Ademas, analizando el contenido de este archivo de respaldo. Llegamos a encontrar un username llamado manager,que al parecer su rol es admin, y su password, que esta en forma hash como usualmente suelen estar  almacenada en la base de datos.
+
+Ahora utilizaremos la herramienta `hash-identifier` para saber que funcion hash esta utilizando este hash
+
+![](/assets/images/LazyAdmin/image039.png)
+
+El resultado de la herramienta nos indica que lo mas probable es que sea la funcion hash MD5.
+
+Ahora utilizaremos `john the ripper` para realizar el crackeo del hash. Donde le especificamos:
+- La funcion hash que utiliza el hash.
+- Un archivo que contiene el hash que queremos crackear.
+- Un diccionario que sea utilizado por la herramienta para el crackeo.
+
+![](/assets/images/LazyAdmin/image041.png)
+
+Llegamos a encontrar la credencial Password123.
 
 
 
