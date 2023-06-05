@@ -76,7 +76,7 @@ Ahora accederemos al recurso content a través de mi navegador web para observar
 
 ![](/assets/images/LazyAdmin/image019.png)
 
-Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada del CMS `SweetRice`,que viene a ser un sistema de gestion de contenido. y que nos permite crear y gestionar contenido en linea, que puede ser sitios o aplicaciones web.Por lo tanto, en el servidor web esta alojando la aplicacion web SweetRice.
+Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada del CMS `SweetRice`,que viene a ser un sistema de gestion de contenido. y que nos permite crear y gestionar contenido en linea, que puede ser sitios o aplicaciones web.Por lo tanto,el servidor web esta alojando la aplicacion web SweetRice.
 
 Ahora utilizaremos la herramienta `wfuzz` ,que también realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos, pero desde la ruta del recurso content para que la herramienta encuentre recursos escondidos en el directorio raiz de la aplicacion web SweetRice. Además, le pasaremos los siguientes parametros a la herramienta:
 
