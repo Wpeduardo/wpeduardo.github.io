@@ -147,100 +147,71 @@ Otra manera de encontrar la credencial seria a traves del sitio web `Crackstatio
 
 ![](/assets/images/LazyAdmin/image1.png)
 
+Ahora probaremos estas credenciales en el formulario que encontramos anteriormente.
+
+![](/assets/images/LazyAdmin/image043.png)
+
+![](/assets/images/LazyAdmin/image045.png)
+
+Llegamos a acceder a la plataforma del CMS SweetRice. Ademas, observamos que tiene una seccion llamada Plugin list, que nos permite subir `plugins` en formato zip.(Los plugins viene a ser piezas de software que nos permiten agregar funcionalidades adicionales o personalizar la apariencia o el comportamiento del sitio o aplicacion web que se vaya a crear utilizando el CMS).
+
+El archivo zip, que subiremos como plugin, va contener un script php, que cuando se ejecute nos generara una conexion reverse shell hacia nuestra maquina, 
+
+![](/assets/images/LazyAdmin/image047.png)
+
+![](/assets/images/LazyAdmin/image049.png)
+
+![](/assets/images/LazyAdmin/image051.png)
+
+Ahora debemos encontrar la ruta de donde se esten almacenando los plugins o archivos zip que hemos subido. Para ello debemos guiarnos del nombre que toma el directoy list _themes, que almacena los themes, que se vayan a utilizar en los sitios o aplicaciones web que se vayan a crear con el CMS. Por lo tanto, lo mas probable es que el directory list que almacene los plugins.Tambien se llame _plugin.
+
+![](/assets/images/LazyAdmin/image053.png)
+
+De esta manera verificamos nuestra hipotesis.
+
+Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante. Para ello utilizamos la herramienta netcat. Además utilizamos el comando rlwrap para que la shell generada en nuestra máquina presenta funcionalidades como el autocompletado de comandos, historial de comandos, etc.
+
+![](/assets/images/LazyAdmin/image055.png)
+
+Ahora, accederemos al recurso _plugin. Donde daremos clic al script php para que se ejecute la conexión reverse shell hacia nuestra máquina.
+
+![](/assets/images/LazyAdmin/image057.png)
+
+De esta manera llegamos obtener acceso a la máquina LazyAdminFinal.
+
+Otra manera de obtener acceso a la maquina objetivo seria aprovechando de que tenemos la opcion de poder subir themes en formato zip. 
+
+El archivo zip, que subiremos como theme, va contener el mismo script php que utilizamos anteriormente, que cuando se ejecute nos generara una conexion reverse shell hacia nuestra maquina. 
+
+![](/assets/images/LazyAdmin/image059.png)
+
+Ahora accederemos al recurso _themes a través de mi navegador web para verificar que se haya subido nuestro archivo zip.
+
+![](/assets/images/LazyAdmin/image061.png)
+
+Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante.
+
+![](/assets/images/LazyAdmin/image063.png)
+
+Ahora, accederemos al recurso _themes. Donde daremos clic al script php para que se ejecute la conexión reverse shell hacia nuestra máquina.
+
+![](/assets/images/LazyAdmin/image065.png)
+
+Otra manera de obtener acceso a la maquina objetivo seria alterando unos de los archivos php del codigo fuente del theme default, que viene por defecto en el CMS.
+
+![](/assets/images/LazyAdmin/image067.png)
+
+En este caso modificaremos el contenido del archivo comment_form.php con el script php, que utilizamos anteriormente.
+
+Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante.
+
+![](/assets/images/LazyAdmin/image069.png)
+
+Ahora, accederemos subdirectorio default, que contiene los archivos de codigo fuente del theme. Donde daremos clic al comment_form.php para que se ejecute la conexión reverse shell hacia nuestra máquina.
+
+![](/assets/images/LazyAdmin/image071.png)
 
 
-
-
-Otra manera que p
-
-Ahora buscaremos un exploit para la versión 2.2.8 de CMS Made simple en la base de datos de `Metasploit` a través del comando searchsploit.
-
-![](/assets/images/EasyCTF/image041.png)
-
-![](/assets/images/EasyCTF/image043.png)
-
-Llegamos a encontrar un exploit, que viene a ser un script cuyo código fuente es python, y que se basa en SQL injection. Además, el exploit ha sido probado exitosamente en las versiones menores a 2.2.10 de CMS Made simple. 
-
-Ahora le daremos el parametro -m a searchsploit con el fin de que nos haga una copia del exploit en nuestro directorio actual.
-
-![](/assets/images/EasyCTF/image045.png)
-
-Ahora utilizaremos el parametro -h en el script para observar qué parámetros se le tiene que pasar para que funcione correctamente.
-
-![](/assets/images/EasyCTF/image047.png)
-
-Llegamos a notar que los parámetros que debemos pasarle al script vienen a ser: 
-- EL parametro -u que viene a ser el url donde está almacenada el CMS.
-- EL parametro -w que viene a ser el  wordlist con el fin de que pueda crackear el hash que vaya a encontrar el script
-- El parametro -c para  habilitar el crackeo del hash que encuentre.
-
-![](/assets/images/EasyCTF/image049.png)
-
-![](/assets/images/EasyCTF/image051.png)
-
-![](/assets/images/EasyCTF/image053.png)
-
-Vemos que el script llegó a encontrar la salt, que se le agregó a la contraseña antes de que se aplicara un algoritmo o función hash. 
-- Además, encontró un username, que viene a ser igual a las suposiciones que habíamos hecho en pasos anteriores.
-- Además, encontró el email asociado al usuario mitch. 
-- Además, encontró un hash. 
-- Por último, llegó a crackear el hash con su salt utilizando el wordlist rockyou.txt, que le pasamos.
-
-De esta manera, el script llegó a encontrar la contraseña secret asociada al usuario mitch.
-
-Otra manera de crackear el hash y el salt encontrado sería utilizando `hashcat`, pero primero debemos saber que función o algoritmo hash está utilizando el hash encontrado. Para ello utilizare hash-identifier con el fin de encontrar los posibles algoritmos hash, que está utilizando el hash encontrado.
-
-![](/assets/images/EasyCTF/image055.png)
-
-Llegamos a obtener una posible función hash MD5. 
-Luego utilizamos el siguiente comando. Donde digitamos los siguientes parámetros:
-- El archivo ejecutable de Hashcat
-- EL parametro -a para especificar el tipo de ataque que se realizará durante el proceso del crackeo del hash.En nuestro caso toma el valor de 0 ya que se va realizar fuerza bruta.
-- El parametro -m para especificar el tipo de algoritmo o función de hash que tiene el hash ingresado. En nuestro caso toma el valor de 20 ya que viene a ser MD5 con su salt.
-- Luego digitamos el hash, que se va crackear, y su salt separados por un :.
-- Luego digitamos el diccionario que se va utilizar para el crackeo del hash.En nuestro caso viene a ser el rockyou.
-
-![](/assets/images/EasyCTF/image057.png)
-
-![](/assets/images/EasyCTF/image059.png)
-
-Observamos que mediante esta  manera también llegamos a obtener la contraseña secret del usuario mitch.
-Ahora con estas credenciales vamos a logearnos en el formulario del CMS.
-
-![](/assets/images/EasyCTF/image061.png)
-
-Logramos autenticarnos exitosamente. Además, observamos que hay una sección llamada File Manager que nos permite cargar archivos al servidor web.
-Teniendo en cuenta esto vamos a testear si la aplicación web CMS Made simple presenta la vulnerabilidad File Upload, es decir, si es que no realiza una correcta validación de los archivos que se suben al servidor web. 
-Para ello intentaremos subir un archivo PHP cuyo código genera una conexión reverse shell hacia nuestra máquina mediante el puerto 1500.
-
-![](/assets/images/EasyCTF/image063.png)
-
-Nos damos cuenta que al subir el archivo PHP no aparece el archivo en el directorio uploads. La primera hipótesis que podemos hacer es que la aplicación web está filtrando los archivos PHP.
-Para verificar esta hipótesis, utilizamos `BurpSuite` para capturar la solicitud POST HTML que hacemos al servidor web, para que cargue nuestro archivo PHP. Luego enviaremos la solicitud capturada a la ventana Repeater para poder observar la respuesta HTML que recibimos del servidor web.
-
-![](/assets/images/EasyCTF/image065.png)
-
-Observando la respuesta HTTP del servidor, podemos concluir que el error está en el filename, que viene a ser el nombre de mi archivo. Ahora intentaremos cambiar la extensión, que aparece en el nombre de archivo, por un .PHTML, que viene a ser un archivo que contiene código HTML y PHP, pero en nuestro caso va contener el mismo código PHP que tenía el anterior archivo PHP.
-
-![](/assets/images/EasyCTF/image067.png)
-
-Vemos que con este cambio en la extensión del archivo se nos permite cargar el archivo `PHTML`.Por lo tanto, el servidor web filtra los archivos PHP que se suben a través de la aplicación web.
-Teniendo en cuenta ello, vamos a subir un archivo PHTML con el mismo contenido del archivo `PHP`, que intentamos subir inicialmente.
-
-![](/assets/images/EasyCTF/image069.png)
-
-En esta ocasión, la aplicación web nos dejó subir el archivo phtml, y se encuentra en el directorio Uploads. Por lo tanto, la aplicación web si presenta la vulnerabilidad File Upload ya que no valida adecuadamente los archivos que cargan los usuarios al servidor a través de la aplicación CMS.
-Ahora daremos clic al archivo phtml para que se ejecute el código que tiene, pero antes habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante. Para ello utilizamos la herramienta netcat.
-
-![](/assets/images/EasyCTF/image071.png)
-
-![](/assets/images/EasyCTF/image073.png)
-
-Podemos observar que hemos ganado acceso a la máquina EasyCTF, siendo el usuario www-data.Además, el mensaje can’t access tty nos indica que al usuario www-data se le he configurado con una shell nologin, que viene a ser una shell no interactiva, cada vez que inicie sesión en el sistema. Esto lo podemos verificar accediendo al contenido del archivo /etc/passwd.
-
-![](/assets/images/EasyCTF/image075.png)
-
-La desventaja de tener una shell no interactiva viene a ser que no vamos a poder ejecutar varios comandos que requieren de un tty.
 
 ## Fase Escalada de privilegios 
 Ahora pasaremos a la fase de escalada de privilegios.Para ello buscaremos archivos binarios con permiso `SUID`, que nos va permitir tener los privilegios del propietario, que venga a ser root, del archivo cuando lo ejecutamos.
