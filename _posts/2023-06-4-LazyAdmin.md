@@ -1,8 +1,8 @@
 ---
 layout: single
-title: EasyCTF - TryHackMe
+title: LazyAdmin - TryHackMe
 excerpt: "En este caso debemos encontrar dos banderas ubicadas en la maquina LazyAdminFinal. Donde a partir del script http-enum de Nmap encontré el recurso content, que viene a ser la pagina de inicio predeterminada del CMS SweetRice. Luego utilizo wfuzz para encontrar recursos ocultos en el directorio raíz de la aplicación CMS. Llegando a encontrar el recurso as que viene a ser un login o formulario para entrar a la plataforma del CMS. Además, encontré el recurso inc que viene a ser un directory list que contenía un archivo de respaldo de una base de datos MySQL. Donde encontré unas credenciales que las utilice para autenticarme en el formulario. Luego aprovechándome que la aplicación CMS permite subir plugins, themes, o modificar el archivo del código fuente de un theme es que puede subir un script PHP que me genere el acceso a la maquina objetivo. Luego para la escalada de privilegios, modifique un comando de un archivo perl que podía ejecutar teniendo los privilegios del usuario root."
-date: 2023-05-27
+date: 2023-06-04
 classes: wide
 header:
   teaser: /assets/images/LazyAdmin/image003.png
@@ -29,11 +29,11 @@ tags:
   - sudo
 ---
 
-![](/assets/images/EasyCTF/descarga5.png)
+![](/assets/images/LazyAdmin/image001.png)
 
 ## Summary
 
-Para resolver esta máquina, primero encontramos un servidor `FTP` que contiene un directorio compartido, cuyo contenido era un archivo que nos comentaba sobre que se había establecido contraseñas débiles e iguales a algunos servicios levantados en la máquina. Luego, utilizando la herramienta `wfuzz` y scripts de Nmap encontramos una aplicación `CMS Made simple 2.2.8` alojada en el servidor `HTTP`. Luego, llegamos a encontrar un exploit para la aplicación, que realizaba `SQL injection`, y nos proporcionó las credenciales del administrador de la aplicación web. Además, utilizamos `hashcat` como otra opción para crackear el hash MD5 con su salt, que nos daba el `exploit`. Luego, nos autenticamos en el formulario de la aplicación web. Donde nos dimos cuenta de que presentaba la vulnerabilidad `File Upload`, ya que nos permitió subir un archivo `PHTML` que contenía un script `PHP` que nos generaba una conexión reverse shell hacia nuestra máquina. Luego, llegamos a acceder a la máquina EasyCTF siendo el usuario www-data. Por lo tanto, decidimos escalar privilegio utilizando el archivo binario `pkexec`, que tenía permiso `SUID`. Mediante esta manera llegamos a ser el usuario root, y encontramos las dos banderas. Además, otra manera que encontramos para tener acceso a la máquina EasyCTF es aprovechando el servicio `SSH` y el uso de la vulnerabilidad de utilizar las mismas credenciales. Donde llegamos a ser el usuario mitch. Por lo tanto, decidimos escalar privilegio aprovechando que podíamos ejecutar comandos teniendo los privilegios del usuario root mediante el archivo binario `vim`.
+En este caso debemos encontrar dos banderas ubicadas en la maquina LazyAdminFinal. Donde a partir del script http-enum de Nmap encontré el recurso content, que viene a ser la pagina de inicio predeterminada del CMS SweetRice. Luego utilizo wfuzz para encontrar recursos ocultos en el directorio raíz de la aplicación CMS. Llegando a encontrar el recurso as que viene a ser un login o formulario para entrar a la plataforma del CMS. Además, encontré el recurso inc que viene a ser un directory list que contenía un archivo de respaldo de una base de datos MySQL. Donde encontré unas credenciales que las utilice para autenticarme en el formulario. Luego aprovechándome que la aplicación CMS permite subir plugins, themes, o modificar el archivo del código fuente de un theme es que puede subir un script PHP que me genere el acceso a la maquina objetivo. Luego para la escalada de privilegios, modifique un comando de un archivo perl que podía ejecutar teniendo los privilegios del usuario root.
 
 ## Fase Reconocimiento
 
