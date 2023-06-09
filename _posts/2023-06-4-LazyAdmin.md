@@ -246,7 +246,7 @@ Ahora, aprovechando que el script `copy.sh` tiene el permiso de ser editable par
 
 ![](/assets/images/LazyAdmin/image081.png)
 
-Nos damos cuenta que no podemos modificar el contenido del script con el editor de texto nano ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando echo con el fin de redirigir la cadena de caracteres, que digitemos, hacia el script.
+Nos damos cuenta que no podemos modificar el contenido del script con el editor de texto `nano` ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando `echo` con el fin de redirigir la cadena de caracteres, que digitemos, hacia el script.
 
 ![](/assets/images/LazyAdmin/image083.png)
 
