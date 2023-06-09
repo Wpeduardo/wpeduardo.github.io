@@ -12,18 +12,18 @@ categories:
   - TryHackMe
   - ctf
 tags:
-  - linux  
+  - Linux  
   - openvpn
-  - nmap
-  - http
-  - ssh
-  - wfuzz
+  - Nmap
+  - HTTP
+  - SSH
+  - Wfuzz
   - MySQL
   - CMS SweetRice
   - hash-identifier
   - John The Ripper
-  - php
-  - perl
+  - PHP
+  - Perl
   - sudo
 ---
 

@@ -12,17 +12,17 @@ categories:
   - TryHackMe
   - ctf
 tags:
-  - linux  
+  - Linux  
   - openvpn
-  - nmap
-  - ssh
-  - http
-  - wfuzz
+  - Nmap
+  - SSH
+  - HTTP
+  - Wfuzz
   - Burp Suite
-  - php
-  - python
-  - perl
-  - ruby
+  - PHP
+  - Python
+  - Perl
+  - Ruby
   - awk
   - sudo
 ---
