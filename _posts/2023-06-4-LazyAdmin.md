@@ -20,11 +20,11 @@ tags:
   - Wfuzz
   - MySQL
   - CMS SweetRice
-  - hash-identifier
+  - Hash-Identifier
   - John The Ripper
   - PHP
   - Perl
-  - sudo
+  - Sudo
 ---
 
 ![](/assets/images/LazyAdmin/image001.png)

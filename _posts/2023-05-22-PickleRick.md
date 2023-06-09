@@ -23,8 +23,8 @@ tags:
   - Python
   - Perl
   - Ruby
-  - awk
-  - sudo
+  - AWK
+  - Sudo
 ---
 
 ![](/assets/images/PickleRick/Imagen01.png)
