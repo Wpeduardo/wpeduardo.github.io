@@ -7,7 +7,7 @@ classes: wide
 header:
   teaser: /assets/images/LazyAdmin/image003.png
   teaser_home_page: true
-  icon: /assets/images/decarga7.webp
+  icon: /assets/images/descarga7.webp
 categories:
   - TryHackMe
   - ctf
@@ -79,6 +79,9 @@ Ahora accederemos al recurso content a través de mi navegador web para observar
 Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada del CMS `SweetRice`,que viene a ser un sistema de gestion de contenido. y que nos permite crear y gestionar contenido en linea, que puede ser sitios o aplicaciones web.Por lo tanto,el servidor web esta alojando la aplicacion web SweetRice.
 
 Ahora utilizaremos la herramienta `wfuzz` ,que también realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos, pero desde la ruta del recurso content para que la herramienta encuentre recursos escondidos en el directorio raiz de la aplicacion web SweetRice. Además, le pasaremos los siguientes parametros a la herramienta:
+- El parametro –hc con el fin de filtrar los recursos que tenga un código de estado HTTP 403,404,400.
+- El parametro -w con el fin de indicar la ruta de la lista de posibles nombres de archivos y directorios,  que utilizara la herramienta.
+- El parametro -u con el fin de indicar la ruta donde hara el ataque de fuerza bruta de directorios.
 
 ![](/assets/images/LazyAdmin/image021.png)
 
@@ -237,11 +240,11 @@ Ahora observaremos el contenido del script `copy.sh`.
 
 Donde observamos un comando que crea un FIFO, que es un mecanismo de comunicación entre procesos que permite enviar datos de manera unidireccional, para establecer la conexión de shell inversa y utiliza el comando nc para redirigir los datos de salida de la shell hacia un host remoto.
 
-Ahora, aprovechando que el script `copy.sh` puede tiene el permiso de ser editable para los usuarios que pertenecen a un grupo diferente al grupo primario del usuario root, modificaremos la dirrecion ip de ese host remoto a la nuestra para que se genera la conexion reverse shell con nuestra maquina.
+Ahora, aprovechando que el script `copy.sh` tiene el permiso de ser editable para los usuarios que pertenecen a un grupo diferente al grupo primario del usuario root, modificaremos la dirrecion ip de ese host remoto a la nuestra para que se genera la conexion reverse shell con nuestra maquina.
 
 ![](/assets/images/LazyAdmin/image083.png)
 
-Nos damos cuenta que no podemos modificar el contenido del script con el comando nano ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando echo con el fin de redirigir la cadena de caractere que digitamos hacia el script.
+Nos damos cuenta que no podemos modificar el contenido del script con el editor de texto nano ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando echo con el fin de redirigir la cadena de caracteres, que digitemos, hacia el script.
 
 ![](/assets/images/LazyAdmin/image085.png)
 
