@@ -228,7 +228,7 @@ Observamos que podemos ejecutar el archivo Perl `backup.pl` con el archivo binar
 
 Ahora, observaremos el contenido del archivo `backup.pl`.
 
-![](/assets/images/LazyAdmin/image077.png)
+![](/assets/images/LazyAdmin/image075.png)
 
 Vemos que el archivo perl contiene un script perl con los siguientes comandos:
 - #!/usr/bin/perl: Esta línea es conocida como shebang y se utiliza para indicar al sistema operativo que debe usar el intérprete de Perl para ejecutar este script.
@@ -236,25 +236,27 @@ Vemos que el archivo perl contiene un script perl con los siguientes comandos:
 
 Ahora observaremos el contenido del script `copy.sh`. 
 
-![](/assets/images/LazyAdmin/image079.png)
+![](/assets/images/LazyAdmin/image077.png)
 
-![](/assets/images/LazyAdmin/image081.png)
+![](/assets/images/LazyAdmin/image079.png)
 
 Donde observamos un comando que crea un FIFO, que es un mecanismo de comunicación entre procesos que permite enviar datos de manera unidireccional, para establecer la conexión de shell inversa y utiliza el comando nc para redirigir los datos de salida de la shell hacia un host remoto.
 
 Ahora, aprovechando que el script `copy.sh` tiene el permiso de ser editable para los usuarios que pertenecen a un grupo diferente al grupo primario del usuario root, modificaremos la dirrecion ip de ese host remoto a la nuestra para que se genera la conexion reverse shell con nuestra maquina.
 
-![](/assets/images/LazyAdmin/image083.png)
+![](/assets/images/LazyAdmin/image081.png)
 
 Nos damos cuenta que no podemos modificar el contenido del script con el editor de texto nano ya que requiere de una shell interactiva. Por lo tanto, utilizaremos el comando echo con el fin de redirigir la cadena de caracteres, que digitemos, hacia el script.
 
-![](/assets/images/LazyAdmin/image085.png)
+![](/assets/images/LazyAdmin/image083.png)
 
 Ahora habilitamos el puerto 1700 en nuestra máquina para que esté en escucha y esperando la conexión entrante
 
-![](/assets/images/LazyAdmin/image087.png)
+![](/assets/images/LazyAdmin/image085.png)
 
 Ahora ejecutaremos el archivo `backup.pl` con el archivo binario perl y con el archivo binario sudo para ejecutarlo con los privilegios del usuario root.
+
+![](/assets/images/LazyAdmin/image087.png)
 
 ![](/assets/images/LazyAdmin/image089.png)
 
@@ -263,3 +265,4 @@ De esta manera llegamos a ser el usuario root o superusuario.
 Luego, con el comando `cat` podremos observar el contenido de ambas banderas. 
 
 ![](/assets/images/LazyAdmin/image091.png)
+
