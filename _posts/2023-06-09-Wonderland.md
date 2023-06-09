@@ -68,6 +68,8 @@ Ahora accederemos a la pagina web a traves de mi navegador web para observar su 
 
 ![](/assets/images/Wonderland/image015.png)
 
+![](/assets/images/Wonderland/image1.png)
+
 Donde podemos verificar el titulo que encontramos anteriormente.
 
 Ahora ejecutaremos los scripts de nmap de la categoria vuln con el fin de conocer las vulnerabilidades de los servicios que estan levantados en los puertos abiertos.
@@ -268,18 +270,21 @@ Ahora utilizamos el siguiente comando para que nos enumere los archivos binarios
 
 Observamos que a los archivos binarios perl y perl5.26.1 se le han asignado el capability cap_setuid con los permisos p y e, que le otoroga la capacidad a los archivos binarios de ejecutarse con los privilegios del usuario propietario del archivo.
 
+![](/assets/images/Wonderland/image109.png)
+
 Ademas, observamos que ambos archivos binarios tienen habilitado el permiso de ejecutar para los usuarios que pertenecen al grupo hatter. Por lo tanto, si podemos ejecutar cualquier de los dos archivos.
+
 Aprovechando esto utilizaremos el siguiente comando que intentara ejecutar un shell interactivo ("/bin/sh") con los privilegios de root, al utilizar la funcion "setuid(0)" para cambiar el ID de usuario antes de ejecutar el shell. Esto permitira el acceso y la ejecucion de comandos con privilegios de superusuario. 
 
-![](/assets/images/Wonderland/image109.png)
+![](/assets/images/Wonderland/image111.png)
 
 De esta manera llegamos a ser el usuario root.
 
 Ahora buscaremos las dos banderas contenida en los archivos user.txt y root.txt. Para localizar los archivos utilizaremos el comando find para buscar desde el directorio /, archivos con nombre user.txt y root.txt.
 
-![](/assets/images/Wonderland/image111.png)
-
 ![](/assets/images/Wonderland/image113.png)
+
+![](/assets/images/Wonderland/image115.png)
 
 
 
