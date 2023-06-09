@@ -55,6 +55,8 @@ Luego pasaremos a la fase de Escaneo y Enumeracion con el fin de poder escanear 
 
 ![](/assets/images/Wonderland/image011.png)
 
+![](/assets/images/Wonderland/image1.png)
+
 Los resultados que obtuvimos del escaneo vienen a ser:
 - Hay un servicio HTTP que se esta levantado en el puerto 80, y el  programa servidor HTTP que se esta corriendo.Ademas, la version del programa servidor HTTP.
 - A partir del script http-tittle.nse de Nmap podimos obtener el titulo de una pagina HTML que se aloja en el servidor web de la maquina Wonderland . Este resultado tambien lo podimos haber obtenido al realizar una solicitud GET HTTP al servidor web con el comando curl para obtener el cuerpo de la respuesta HTML del servidor web.
@@ -67,8 +69,6 @@ Observamos que el cuerpo de la respuesta HTML viene a ser el codigo HTML de la p
 Ahora accederemos a la pagina web a traves de mi navegador web para observar su contenido.
 
 ![](/assets/images/Wonderland/image015.png)
-
-![](/assets/images/Wonderland/image1.png)
 
 Donde podemos verificar el titulo que encontramos anteriormente.
 
