@@ -138,7 +138,7 @@ El resultado de la herramienta nos indica que lo mas probable es que sea la func
 Ahora utilizaremos `john the ripper` para realizar el crackeo del hash. Donde le especificamos:
 - La funcion hash que utiliza el hash.
 - Un archivo que contiene el hash que queremos crackear.
-- Un diccionario que sea utilizado por la herramienta para el crackeo.
+- Un diccionario que sera utilizado por la herramienta para el crackeo.
 
 ![](/assets/images/LazyAdmin/image041.png)
 
