@@ -194,9 +194,9 @@ Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y
 
 ![](/assets/images/LazyAdmin/image055.png)
 
-Luego, accederemos al recurso `_themes`. Donde daremos clic al script php contenido en el archivo zip. que subi anteriormente, para que se ejecute la conexión reverse shell hacia nuestra máquina.
+Luego, accederemos al recurso `_themes`. Donde daremos clic al script php contenido en el archivo zip, que subi anteriormente, para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
-![](/assets/images/LazyAdmin/image059.png)
+![](/assets/images/LazyAdmin/image057.png)
 
 Otra manera de obtener acceso a la maquina objetivo seria alterando unos de los archivos php del codigo fuente del theme `default`, que viene por defecto en el CMS.
 
