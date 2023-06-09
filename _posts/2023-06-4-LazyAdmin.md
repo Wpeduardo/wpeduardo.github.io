@@ -72,16 +72,16 @@ Ahora ejecutaremos los scripts de Nmap de la categoría vuln con el fin de conoc
 
 Podemos notar que se ha el utilizado script `http-enum.nse` de Nmap, que realiza un fuerza bruta de directorios con una lista de nombres posibles de directorios y archivos con el fin de encontrar archivos y directorios escondidos, llegandose a obtener el recurso content, que está almacenado en el directorio raíz del servidor web.
 
-Ahora accederemos al recurso content a través de mi navegador web para observar su contenido.
+Ahora accederemos al recurso `content` a través de mi navegador web para observar su contenido.
 
 ![](/assets/images/LazyAdmin/image019.png)
 
 Nos damos cuenta que el recurso viene a ser la pagina de inicio predeterminada del CMS `SweetRice`,que viene a ser un sistema de gestion de contenido. y que nos permite crear y gestionar contenido en linea, que puede ser sitios o aplicaciones web.Por lo tanto,el servidor web esta alojando la aplicacion web SweetRice.
 
 Ahora utilizaremos la herramienta `wfuzz` ,que también realiza fuerza bruta de directorios utilizando un lista de posibles nombre de directorios y archivos, pero desde la ruta del recurso content para que la herramienta encuentre recursos escondidos en el directorio raiz de la aplicacion web SweetRice. Además, le pasaremos los siguientes parametros a la herramienta:
-- El parametro –hc con el fin de filtrar los recursos que tenga un código de estado HTTP 403,404,400.
-- El parametro -w con el fin de indicar la ruta de la lista de posibles nombres de archivos y directorios,  que utilizara la herramienta.
-- El parametro -u con el fin de indicar la ruta donde hara el ataque de fuerza bruta de directorios.
+- El parametro `–hc` con el fin de filtrar los recursos que tenga un código de estado HTTP 403,404,400.
+- El parametro `-w` con el fin de indicar la ruta de la lista de posibles nombres de archivos y directorios,  que utilizara la herramienta.
+- El parametro `-u` con el fin de indicar la ruta donde hara el ataque de fuerza bruta de directorios.
 
 ![](/assets/images/LazyAdmin/image021.png)
 
@@ -95,7 +95,7 @@ Ahora accederemos al recurso `js` a través de mi navegador web para observar su
 
 Nos damos cuenta que el recurso `js` viene a ser un directory list que contiene archivos con extension .js. Por lo tanto, su codigo esta escrito en JavaScript.
 
-Ahora accederemos al `recurso _themes` a través de mi navegador web para observar su contenido.
+Ahora accederemos al recurso `_themes` a través de mi navegador web para observar su contenido.
 
 ![](/assets/images/LazyAdmin/image027.png)
 
