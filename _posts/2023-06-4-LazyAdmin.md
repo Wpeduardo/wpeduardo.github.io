@@ -166,6 +166,8 @@ El archivo zip, que subiremos como plugin, va contener un script php, que cuando
 
 Ahora debemos encontrar la ruta de donde se esten almacenando los plugins o archivos zip que hemos subido. Para ello debemos guiarnos del nombre que toma el recurso `_themes`, que viene a ser el directory list que almacena los themes,y que se van a utilizar en los sitios o aplicaciones web que se vayan a crear con el CMS. Por lo tanto, lo mas probable es que el recurso  que almacene los plugins.Tambien se llame `_plugin` o algo parecido a ello.
 
+Ahora accederemos al recuros _plugin a traves del navegador web para verificar la hipotesis que creamos anteriormente.
+
 ![](/assets/images/LazyAdmin/image053.png)
 
 De esta manera verificamos nuestra hipotesis.
@@ -174,7 +176,7 @@ Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y
 
 ![](/assets/images/LazyAdmin/image055.png)
 
-Ahora, accederemos al recurso `_plugin`. Donde daremos clic al script php para que se ejecute la conexión reverse shell hacia nuestra máquina.
+Ahora, accederemos al recurso `_plugin`. Donde daremos clic al script php que esta contenido en el archivo zip, que subimos en forma de plugin, para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
 ![](/assets/images/LazyAdmin/image057.png)
 
