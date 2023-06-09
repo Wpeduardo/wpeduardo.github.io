@@ -180,13 +180,13 @@ Ahora, accederemos al recurso `_plugin`. Donde daremos clic al script php para q
 
 De esta manera llegamos obtener acceso a la máquina LazyAdminFinal.
 
-Otra manera de obtener acceso a la maquina objetivo seria aprovechando de que tenemos la opcion de poder subir themes en formato zip. 
+Otra manera de obtener acceso a la maquina objetivo seria aprovechando de que tenemos la opcion de poder subir `themes` en formato `zip`. 
 
 El archivo zip, que subiremos como theme, va contener el mismo script php que utilizamos anteriormente, que cuando se ejecute nos generara una conexion reverse shell hacia nuestra maquina. 
 
 ![](/assets/images/LazyAdmin/image059.png)
 
-Ahora accederemos al recurso `_themes` a través de mi navegador web para verificar que se haya subido nuestro archivo zip.
+Ahora accederemos al recurso `_themes` a través de mi navegador web para verificar que se haya subido nuestro archivo `zip`.
 
 ![](/assets/images/LazyAdmin/image061.png)
 
@@ -194,9 +194,9 @@ Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y
 
 ![](/assets/images/LazyAdmin/image055.png)
 
-Ahora, accederemos al recurso `_themes`. Donde daremos clic al script php para que se ejecute la conexión reverse shell hacia nuestra máquina.
+Ahora, accederemos al recurso `_themes`. Donde daremos clic al script php contenido en el archivo zip. que subi anteriormente, para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
-![](/assets/images/LazyAdmin/image065.png)
+![](/assets/images/LazyAdmin/image063.png)
 
 Otra manera de obtener acceso a la maquina objetivo seria alterando unos de los archivos php del codigo fuente del theme `default`, que viene por defecto en el CMS.
 
