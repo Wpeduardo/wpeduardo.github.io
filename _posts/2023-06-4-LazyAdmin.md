@@ -202,9 +202,9 @@ Luego, accederemos al recurso `_themes`. Donde daremos clic al script php conten
 
 Otra manera de obtener acceso a la maquina objetivo seria alterando unos de los archivos php del codigo fuente del theme `default`, que viene por defecto en el CMS.
 
-![](/assets/images/LazyAdmin/image067.png)
-
 En este caso modificaremos el contenido del archivo `comment_form.php` con el script php, que utilizamos anteriormente.
+
+![](/assets/images/LazyAdmin/image067.png)
 
 Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y esperando la conexión entrante.
 
