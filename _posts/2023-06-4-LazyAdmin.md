@@ -194,9 +194,9 @@ Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y
 
 ![](/assets/images/LazyAdmin/image055.png)
 
-Ahora, accederemos al recurso `_themes`. Donde daremos clic al script php contenido en el archivo zip. que subi anteriormente, para que se ejecute la conexión reverse shell hacia nuestra máquina.
+Luego, accederemos al recurso `_themes`. Donde daremos clic al script php contenido en el archivo zip. que subi anteriormente, para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
-![](/assets/images/LazyAdmin/image063.png)
+![](/assets/images/LazyAdmin/image059.png)
 
 Otra manera de obtener acceso a la maquina objetivo seria alterando unos de los archivos php del codigo fuente del theme `default`, que viene por defecto en el CMS.
 
@@ -210,9 +210,11 @@ Ahora habilitamos el puerto 1500 en nuestra máquina para que esté en escucha y
 
 Ahora, accederemos subdirectorio `default`, que contiene los archivos de codigo fuente del theme default. Donde daremos clic al `comment_form.php` para que se ejecute la conexión reverse shell hacia nuestra máquina.
 
-![](/assets/images/LazyAdmin/image059.png)
+![](/assets/images/LazyAdmin/image065.png)
 
-![](/assets/images/LazyAdmin/image073.png)
+![](/assets/images/LazyAdmin/image057.png)
+
+![](/assets/images/LazyAdmin/image071.png)
 
 ## Fase Escalada de privilegios
 
@@ -220,7 +222,7 @@ Nos damos cuenta que hemos obtenido acceso siendo el usuario `www-data`, y obser
 
 Ahora utilizamos el siguiente comando para observar que programas puedo ejecutar con el comando `sudo`, y con los privielgios del usuario root.
 
-![](/assets/images/LazyAdmin/image075.png)
+![](/assets/images/LazyAdmin/image073.png)
 
 Observamos que podemos ejecutar el archivo Perl `backup.pl` con el archivo binario `Perl` teniendo los privilegios del usuario root. 
 
