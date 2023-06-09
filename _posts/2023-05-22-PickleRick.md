@@ -18,7 +18,7 @@ tags:
   - ssh
   - http
   - wfuzz
-  - burpsuite
+  - Burp Suite
   - php
   - python
   - perl

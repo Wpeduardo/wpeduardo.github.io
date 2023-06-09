@@ -19,9 +19,9 @@ tags:
   - ssh
   - wfuzz
   - MySQL
-  - cmssweetrice
-  - hashidentifier
-  - johntheripper
+  - CMS SweetRice
+  - hash-identifier
+  - John The Ripper
   - php
   - perl
   - sudo
