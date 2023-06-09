@@ -13,7 +13,7 @@ categories:
   - ctf
 tags:
   - Linux  
-  - openvpn
+  - openVPN
   - Nmap
   - SSH
   - HTTP
