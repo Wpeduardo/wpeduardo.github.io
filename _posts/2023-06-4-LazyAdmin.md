@@ -164,7 +164,7 @@ El archivo zip, que subiremos como plugin, va contener un script php, que cuando
 
 ![](/assets/images/LazyAdmin/image051.png)
 
-Ahora debemos encontrar la ruta de donde se esten almacenando los plugins o archivos zip que hemos subido. Para ello debemos guiarnos del nombre que toma el directoy list _themes, que almacena los themes, que se vayan a utilizar en los sitios o aplicaciones web que se vayan a crear con el CMS. Por lo tanto, lo mas probable es que el directory list que almacene los plugins.Tambien se llame _plugin.
+Ahora debemos encontrar la ruta de donde se esten almacenando los plugins o archivos zip que hemos subido. Para ello debemos guiarnos del nombre que toma el recurso `_themes`, que viene a ser el directory list que almacena los themes,y que se van a utilizar en los sitios o aplicaciones web que se vayan a crear con el CMS. Por lo tanto, lo mas probable es que el recurso  que almacene los plugins.Tambien se llame `_plugin` o algo parecido a ello.
 
 ![](/assets/images/LazyAdmin/image053.png)
 
