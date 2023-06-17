@@ -22,6 +22,7 @@ tags:
   - Systemctl
   - PHP
   - PHTML
+  - Burp Suite
 ---
 
 ![](/assets/images/VulnUniversity/image001.png)
