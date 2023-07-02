@@ -21,7 +21,6 @@ tags:
   - SMBClient
   - Crontab
   - env
-  - SUID
 ---
 
 ![](/assets/images/Anonymous/image001.png)
