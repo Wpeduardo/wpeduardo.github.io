@@ -22,6 +22,7 @@ tags:
   - Binwalk
   - Steghide
   - Sudo
+  - Hydra
   - John The Ripper
   - User-Agent Switcher and Manager 
 ---
