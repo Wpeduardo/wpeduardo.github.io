@@ -22,6 +22,7 @@ tags:
   - Binwalk
   - Steghide
   - Sudo
+  - John The Ripper
   - User-Agent Switcher and Manager 
 ---
 
