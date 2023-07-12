@@ -85,7 +85,7 @@ Ahora observaremos el contenido de estos archivos.
 Podemos observar que el archivo Aogiri_tree.txt solo contiene una parte de la trama del anime.Ademas, a traves del comando file podemos saber que el archivo need_to_talk es un archivo ejecutable. Por lo tanto, cuando lo ejecutamos nos piden una frase, y nos dan una pista sobre revisar el contenido el
 archivo ejecutable para encontrar la frase que solicita.
 
-Ademas, cuando observamos el contenido del archivo nos encontramos con muchas caracters que son ilegibles. Por lo tanto, utilizaremos el comando strings para que nos extraiga los caracters elegibles. En una de las cadenas de caracteres elegibles que extrae el comando viene a ser el texto en pantalla que se
+Ademas, cuando observamos el contenido del archivo nos encontramos con muchas caracters que son ilegibles. Por lo tanto, utilizaremos el comando strings para que nos extraiga los caracters elegibles. Una de las cadenas de caracteres elegibles que extrae el comando viene a ser el texto en pantalla que se
 muestra cuando ejecutamos el archivo. Ademas, la cadena de caracteres kamishiro no es mostrado en pantalla durante la ejecucion del archivo.
 
 Ahora, introduciremos este cadena de caracters como la frase solicitada.
