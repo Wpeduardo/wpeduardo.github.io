@@ -111,6 +111,7 @@ Ahora decodificaremos la cadena de caracteres para observar el contenido del arc
 
 Podemos observar en el contenido del archivo, que el desarrollado del sitio web ha programado un filtro para evitar que digitemos puntos dobles(o ../) como entrada en el valor del parámetro GET view. Además, ha configurado otro filtro para que la función include solo pueda mostrar el contenido de los archivos ubicados en el directorio /var/www/html/development_testing.
 
+## FASE EXPLOTACION O GANAR ACCESO O HACKING 
 Ahora teniendo en cuenta estos filtros podemos utilizar ..// en ves de los puntos dobles para movernos al directorio raíz / del sistema objetivo. Luego,digitaremos las rutas de archivos importantes del sistema objetivo como /etc/passwd, /etc/shadow, /proc/version con el fin de observar su contenido a través del navegador web.
 
 ![](/assets/images/Archangel/image035.png)
@@ -164,6 +165,8 @@ Ahora ejecutaremos el archivo reverse.php utilizando la función Include del arc
 ![](/assets/images/Archangel/image069.png)
 
 De esta manera llegamos obtener acceso al sistema objetivo siendo el usuario www-data.
+
+## FASE ESCALADA DE PRIVILEGIOS 
 
 Ahora debemos buscar un vector de escalada de privilegios con el fin de ser un usuario con privilegios más elevados. Para ello observamos detalladamente la tarea cron, que observamos en el contenido del archivo crontab del sistema anteriormente.
 
