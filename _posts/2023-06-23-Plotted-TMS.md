@@ -23,7 +23,7 @@ tags:
   - doas
   - C
   - Base64
-  - wfuzz
+  - Wfuzz
 ---
 
 ![](/assets/images/Plotted-TMS/image001.png)
