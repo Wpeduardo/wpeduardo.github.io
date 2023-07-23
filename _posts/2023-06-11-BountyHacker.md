@@ -19,7 +19,7 @@ tags:
   - HTTP 
   - Hydra
   - SSH
-  - Tar
+  - tar
   - Sudo
 ---
 
