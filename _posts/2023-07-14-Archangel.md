@@ -162,63 +162,61 @@ Ahora ejecutaremos el archivo reverse.php utilizando la función Include del arc
 
 ![](/assets/images/Archangel/image067.png)
 
-![](/assets/images/Archangel/image069.png)
-
 De esta manera llegamos obtener acceso al sistema objetivo siendo el usuario www-data.
 
 ## FASE ESCALADA DE PRIVILEGIOS 
 
 Ahora debemos buscar un vector de escalada de privilegios con el fin de ser un usuario con privilegios más elevados. Para ello observamos detalladamente la tarea cron, que observamos en el contenido del archivo crontab del sistema anteriormente.
 
-![](/assets/images/Archangel/image071.png)
+![](/assets/images/Archangel/image069.png)
 
 Podemos observar que el usuario archangel ha configurado una tarea cron, que viene a ser un script sh que se ejecutara cada minuto de cada día de cada mes. Además, podemos observar que tenemos el permiso para modificar el contenido del script sh ya que este habilitado el permiso de escritura para usuarios que pertenecen a otro grupo diferente al grupo primario del usuario archangel.
 
 Ahora modificaremos el contenido del script sh para que nos genere una conexión reverse Shell hacia nuestro sistema con el fin de ser el usuario archangel.
 
-![](/assets/images/Archangel/image073.png)
+![](/assets/images/Archangel/image071.png)
 
 Ahora habilitamos el puerto 1900 en el sistema para que este escuchando las conexiones entrantes, y esperamos que el sistema destino ejecute la tarea cron siendo el usuario archangel.
 
-![](/assets/images/Archangel/image075.png)
+![](/assets/images/Archangel/image073.png)
 
 De esta manera realizamos la escalada horizontal llegando a ser el usuario archangel.
 
 Ahora debemos buscar un vector de escalada de privilegios con el fin de ser un usuario con privilegios más elevados. Para ello utilizaremos el comando find para buscar los archivos binarios que tienen asignado el permiso SUID.
 
-![](/assets/images/Archangel/image077.png)
+![](/assets/images/Archangel/image075.png)
 
 Podemos observar que el archivo backup ubicado en el directorio home del usuario archangel tiene habilitado el permiso SUID. Además, tenemos habilitado el permiso de ejecución en el archivo backup.
 
 Ahora ejecutaremos el archivo SUID backup para poder deducir que comandos se ejecutan en segundo plano.
 
-![](/assets/images/Archangel/image079.png)
+![](/assets/images/Archangel/image077.png)
 
 Podemos observar que se ejecuta el comando cp para copiar todos los archivos del directorio /home/user/archangel/myfiles hacia una ruta, pero este directorio no existe en el sistema destino es por ello que sale un mensaje de error.
 
 Ahora observaremos el contenido del archivo SUID, pero con el comando strings para que me extraigan solo las cadenas de caracteres legibles.
 
-![](/assets/images/Archangel/image081.png)
+![](/assets/images/Archangel/image079.png)
 
 Podemos observar que no se ha configurado la ruta completa del archivo binario cp en el comando que se ejecuta en segundo plano al momento de ejecutar el archivo SUID. Aprovechando esto podemos manipular la variable de entorno PATH del sistema objetivo para que ejecute un archivo binario malicioso de nuestra propiedad en ves del archivo binario cp original. Para ello crearemos el archivo malicioso, que nos genera una conexión reverse Shell hacia mi sistema siendo el usuario root, y estará ubicado en el directorio tmp. Además, este archivo tendrá el mismo nombre que el archivo binario cp original.
 
 Ahora modificaremos el valor de la variable PATH con el fin de que el sistema busque primero en el directorio tmp y pueda ejecutar nuestro archivo malicioso cp.
 
-![](/assets/images/Archangel/image083.png)
+![](/assets/images/Archangel/image081.png)
 
 Ahora habilitamos el puerto 1800 en el sistema para que este escuchando las conexiones entrantes, y ejecutamos el archivo binario SUID.
 
-![](/assets/images/Archangel/image085.png)
+![](/assets/images/Archangel/image083.png)
 
-![](/assets/images/Archangel/image087.png)
+![](/assets/images/Archangel/image085.png)
 
 De esta manera llegamos a ser el usuario root.
 
 Ahora buscaremos las dos banderas contenidas en los archivos user.txt y root.txt. Para localizar los archivos utilizaremos el comando find para buscar desde el directorio /, archivos con sus nombres.
 
-![](/assets/images/Archangel/image089.png)
+![](/assets/images/Archangel/image087.png)
  
-![](/assets/images/Archangel/image091.png) 
+![](/assets/images/Archangel/image089.png) 
  
  
  
