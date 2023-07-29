@@ -198,25 +198,29 @@ Ahora observaremos el contenido del archivo SUID, pero con el comando strings pa
 
 ![](/assets/images/Archangel/image079.png)
 
-Podemos observar que no se ha configurado la ruta completa del archivo binario cp en el comando que se ejecuta en segundo plano al momento de ejecutar el archivo SUID. Aprovechando esto podemos manipular la variable de entorno PATH del sistema objetivo para que ejecute un archivo binario malicioso de nuestra propiedad en ves del archivo binario cp original. Para ello crearemos el archivo malicioso, que nos genera una conexión reverse Shell hacia mi sistema siendo el usuario root, y estará ubicado en el directorio tmp. Además, este archivo tendrá el mismo nombre que el archivo binario cp original.
+Podemos observar que no se ha configurado la ruta completa del archivo binario cp en el comando que se ejecuta en segundo plano al momento de ejecutar el archivo SUID. Aprovechando esto podemos manipular la variable de entorno PATH del sistema objetivo para que ejecute un archivo binario malicioso de nuestra propiedad en ves del archivo binario cp original. 
 
-Ahora modificaremos el valor de la variable PATH con el fin de que el sistema busque primero en el directorio tmp y pueda ejecutar nuestro archivo malicioso cp.
+Para ello crearemos el archivo malicioso, que nos genera una conexión reverse Shell hacia mi sistema siendo el usuario root, y estará ubicado en el directorio tmp. Además, este archivo tendrá el mismo nombre que el archivo binario cp original.
 
 ![](/assets/images/Archangel/image081.png)
 
-Ahora habilitamos el puerto 1800 en el sistema para que este escuchando las conexiones entrantes, y ejecutamos el archivo binario SUID.
+Ahora modificaremos el valor de la variable PATH con el fin de que el sistema busque primero en el directorio tmp y pueda ejecutar nuestro archivo malicioso cp.
 
 ![](/assets/images/Archangel/image083.png)
 
+Ahora habilitamos el puerto 1800 en nuestro sistema para que este escuchando las conexiones entrantes.Luego, ejecutamos el archivo binario SUID.
+
 ![](/assets/images/Archangel/image085.png)
+
+![](/assets/images/Archangel/image087.png)
+
+![](/assets/images/Archangel/image089.png)
 
 De esta manera llegamos a ser el usuario root.
 
 Ahora buscaremos las dos banderas contenidas en los archivos user.txt y root.txt. Para localizar los archivos utilizaremos el comando find para buscar desde el directorio /, archivos con sus nombres.
-
-![](/assets/images/Archangel/image087.png)
  
-![](/assets/images/Archangel/image089.png) 
+![](/assets/images/Archangel/image091.png) 
  
  
  
