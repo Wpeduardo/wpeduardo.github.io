@@ -214,11 +214,11 @@ Ahora habilitamos el puerto 1800 en nuestro sistema para que este escuchando las
 
 ![](/assets/images/Archangel/image087.png)
 
-![](/assets/images/Archangel/image089.png)
-
 De esta manera llegamos a ser el usuario root.
 
 Ahora buscaremos las dos banderas contenidas en los archivos user.txt y root.txt. Para localizar los archivos utilizaremos el comando find para buscar desde el directorio /, archivos con sus nombres.
+
+![](/assets/images/Archangel/image089.png)
  
 ![](/assets/images/Archangel/image091.png) 
  
