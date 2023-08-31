@@ -193,9 +193,9 @@ Ahora observaremos el contenido del archivo echo.php con el fin de saber que car
 
 ![](/assets/images/Centauro/image040.png)
 
-Podemos observar que llegamos a conseguir el contenido del archivo echo.php, y podemos observar los caracteres que no podemos observar, que son: `#!@%^&*()$_=\[\]\';,{}:>?~\\\\.`, y el comando que está ejecutando en segundo plano la aplicación web con nuestra entrada.
+Podemos observar que llegamos a conseguir el contenido del archivo echo.php, y podemos observar los caracteres que no podemos observar, que son: `#!@%^&*()$_=\[\]\';,{}:>?~\\\\`, y el comando que está ejecutando en segundo plano la aplicación web con nuestra entrada.
 
-Ahora teniendo en cuenta los caracteres que no podemos ingresar, utilizaremos el siguiente comando para que nos generara una reverse Shell cuando se ejecute, pero lo utilizaremos en su forma codificada para evitar ser detectado por el filtro. Además, utilizaremos el símbolo de la tubería | con el fin de redirigir la salida de los comandos hacia la entrada de otros comandos.
+Ahora teniendo en cuenta los caracteres que no podemos ingresar, utilizaremos el siguiente comando para que nos generara una reverse Shell cuando se ejecute, pero lo utilizaremos en su forma codificada para evitar ser detectado por el filtro. Además, utilizaremos el símbolo de la tubería `|` con el fin de redirigir la salida de los comandos hacia la entrada de otros comandos.
 
 ![](/assets/images/Centauro/image041.png)
 
