@@ -22,7 +22,8 @@ tags:
   - sar2html
   - Command Injection
   - Wfuzz
-  - SUID
+  - Suid
+  - CMS Joomla
   - find
 ---
 
