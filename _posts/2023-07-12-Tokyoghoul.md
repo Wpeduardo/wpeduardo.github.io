@@ -24,6 +24,7 @@ tags:
   - John The Ripper
   - Sudo
   - Wfuzz
+  - Codigo Morse
   - Path Traversal
 ---
 
