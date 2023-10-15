@@ -25,6 +25,7 @@ tags:
   - Suid
   - CMS Joomla
   - find
+  - Codigo ASCII
 ---
 
 ![](/assets/images/Boil/image001.png)
