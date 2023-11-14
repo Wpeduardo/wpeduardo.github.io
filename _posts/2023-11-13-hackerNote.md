@@ -15,7 +15,7 @@ tags:
   - Linux  
   - OpenVPN
   - Nmap
-  - Enumeration Usernmaes
+  - Enumeration Usernames
   - Force Brute Passwords
   - HTTP
   - HTML
