@@ -103,7 +103,7 @@ Ahora probaremos si es vulnerable a SSTI. Para ello introduciremos los siguiente
 
 ![](/assets/images/dopsty/image015.png)
 
-Podemos observar que con el payload `{{}}`, logramos obtener un mensaje de erro emitido por el template engine. Por lo tanto, si es vulnerable a SSTI. Además, logramos saber que el template engine es jinja2. Además, esa página web con ese dato volátil ha sido creada a partir de un template jinja2.
+Podemos observar que con el payload {{}}, logramos obtener un mensaje de erro emitido por el template engine. Por lo tanto, si es vulnerable a SSTI. Además, logramos saber que el template engine es jinja2. Además, esa página web con ese dato volátil ha sido creada a partir de un template jinja2.
 
 Ahora que sabemos el template engine, podemos adecuar nuestros payloads a la sintaxis del template engine jinja2. Para ello utilizaremos algunos payloads de la página web HackTricks con el fin de ejecutar comandos de manera remota en el sistema operativo del servidor.
 
