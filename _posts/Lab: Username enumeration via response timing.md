@@ -1,0 +1,76 @@
+---
+layout: single
+title: Lab: Username enumeration via response timing - PortSwigger
+excerpt: "Debemos encontrar una credenciales validas para lograr autenticarnos en el login de un sitio web. Primero, observe que el mensaje de error emitido en la respuesta HTML de la aplicacion web, es general. Ademas, observe que hay un diferencia en el tiempo de respuesta cuando nos autenticamos con un username valido y uno incorrecto. Ademas, observe que hay un limite en el numero intento fallidos. Luego, cree un script en Python para realizar la enumeracion de usernames, teniendo encuenta los detalles anteriores. Luego, cree otro script en Python para la fuerza bruta de contraseñas."
+date: 2023-11-18	
+classes: wide
+header:
+  teaser: /assets/images/PortSwigger.png
+  teaser_home_page: true
+  icon: /assets/images/Logo.webp
+categories:
+  - PortSwigger
+tags:
+  - Python
+  - X-Forwarded-For
+  - HTML
+  - HTTP
+  - Enumeration Usernames 
+  - Force Brute Passwords
+---
+
+![](/assets/images/Enumeration/image001.png)
+
+## SUMMARY
+
+Debemos encontrar una credenciales validas para lograr autenticarnos en el login de un sitio web. Primero, observe que el mensaje de error emitido en la respuesta HTML de la aplicacion web, es general. Ademas, observe que hay un diferencia en el tiempo de respuesta cuando nos autenticamos con un username valido y uno incorrecto. Ademas, observe que hay un limite en el numero intento fallidos. Luego, cree un script en Python para realizar la enumeracion de usernames, teniendo encuenta los detalles anteriores. Luego, cree otro script en Python para la fuerza bruta de contraseñas.
+
+## RESOLUCION
+
+En este laboratorio tenemos que encontrar unas credenciales validas para poder autenticarnos en un login de un sitio web. Para ello la plataforma de PortSwigger (https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-response-timing) nos proveen las credenciales de un usuario (wiener:peter). Además, nos proveen de dos wordlists que contienen una lista de usernames y passwords.
+
+![](/assets/images/Enumeration/image002.png)
+
+![](/assets/images/Enumeration/image003.png)
+
+![](/assets/images/Enumeration/image004.png)
+
+![](/assets/images/Enumeration/image005.png)
+
+Podemos observar que recibimos un mensaje de error generico en la respuesta HTTP del sitio web, independientemente de si el username es valido y el password invalido, o si el username es invalido y el password es invalido. Ademas, luego de un cierto numero de intentos fallidos, nos aparece un mensaje de error que nos dice que no podemos autenticarnos despues de 30 minutos.
+
+Ahora intentaremos omitir esta restriccion, añadiendo la cabecera X-Forwarded-For en nuestra solicitud HTTP, y dandole una dirrecion IP diferente a la nuestra con el fin de que el servidor web lo interprete como otro sistema.
+
+![](/assets/images/Enumeration/image006.png)
+
+![](/assets/images/Enumeration/image007.png)
+
+Podemos observar que en la respuesta HTTP del servidor web no nos aparece ese mensaje de error que nos restringue autenticaros. Por lo tanto, el servidor web si admite la cabecera X-Forwarded-For, y lo interpreto como otro cliente, permitiendonos autenticarnos. 
+
+Otro detalle que nos damos cuenta es en el tiempo de respuesta. Podemos observar en las siguientes imagene, que intentamos autenticarnos con un username wiener y con un password invalido largo, el tiempo de respuesta es 1,460 millis, en cambio, si intentamos autenticarnos con un username invalido y con un password invalido largo, el tiempo de respuesta es de 367 millis. Esta diferencia en el tiempo de respuesta, lo podemos utilizar para realizar una enumeracion de usernames, y encontrar un username valido.
+
+![](/assets/images/Enumeration/image008.png)
+
+![](/assets/images/Enumeration/image009.png)
+
+Ahora teniendo en cuenta toda las condiciones encontradas anteriormente, crearemos un script en Python para realizar la enumeracion de usernames.
+
+![](/assets/images/Enumeration/image010.png)
+
+![](/assets/images/Enumeration/image011.png)
+
+![](/assets/images/Enumeration/image012.png)
+
+Podemos observar que el script logro obtener un username, que puede ser valido, con un tiempo de respuesta cerca al tiempo de respuesta obtenido cuando nos autenticamos con un username valido Wiener.
+
+Ahora realizaremos fuerza bruta de contraseñas contra la autenticación del login, teniendo en cuenta los diversos factores analizados anteriormente. Además, crearemos un script en Python para automatizar el ataque.
+
+![](/assets/images/Enumeration/image013.png)
+
+![](/assets/images/Enumeration/image014.png)
+
+![](/assets/images/Enumeration/image015.png)
+
+De esta manera logramos resolver el laboratorio. Además, los scripts utilizados lo puedes encontrar en mi repositorio Github.
+
+
