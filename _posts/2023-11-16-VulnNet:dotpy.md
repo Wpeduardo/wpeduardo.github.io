@@ -61,7 +61,7 @@ Luego pasaremos a la fase de Escaneo y Enumeración con el fin de poder escanear
 ![](/assets/images/dopsty/image006.png)
 
 Los resultados que obtuvimos del escaneo vienen a ser:
-- Un programa servidor Web en el puerto 8080. Además, observamos que el servidor esta implementado en el lenguaje de programación Python. Además, podemos observar que hay una pagina web almacenada en el servidor cuya etiqueta HTML title toma el valor de “VulnNet Entertainment – Login | Discover”. Además, podemos observar la URL de la página web.
+- Un programa servidor Web en el puerto 8080. Además, observamos que el servidor esta implementado en el lenguaje de programación Python. Además, podemos observar que hay una pagina web almacenada en el servidor cuya etiqueta HTML title toma el valor de `VulnNet Entertainment – Login | Discover`. Además, podemos observar la URL de la página web.
 
 Ahora accederemos a la pagina web a traves de mi navegador web.
 
