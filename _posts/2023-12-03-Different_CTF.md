@@ -29,6 +29,8 @@ tags:
   - CMS Wordpress
   - phpMyAdmin
   - John THe Ripper
+  - sucrack
+  - su
 ---
 
 ![](/assets/images/Different/image001.png)
