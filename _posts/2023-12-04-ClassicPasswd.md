@@ -54,12 +54,15 @@ Ahora probaremos este string como el username requerido en la ejecucion del arch
 
 ![](/assets/images/Passwd/image008.png)
 
+## SEGUNDO METODO
+
 Otra manera que pudimos haber utilizado es mediante la funcion ltrace, que nos permite observar las funciones que se invocan en segundo plano y los resultados que retornan al momento de la ejecucion del programa.
 
 ![](/assets/images/Passwd/image009.png)
 
 Podemos observar que una de las funciones que se invocan es strcmp, donde comparara el string AGB6js5d9dkG7 con el string que ingresemos como username solicitado en el programa. Por lo tanto, de esta manera podremos saber que el string correcto que deberiamos ingresar como username es AGB6js5d9dkG7 con el fin de que el condicional if se cumpla y nos imprima el mensaje Welcome con la bandera.
 
+## TERCER METODO
 Otra manera que pudimos haber obtado es dirigirnos a la funcion donde se imprimira la bandera, y observar el valor de ella directamente.
 
 ![](/assets/images/Passwd/image010.png)
