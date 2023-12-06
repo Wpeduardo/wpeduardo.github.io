@@ -17,9 +17,7 @@ tags:
   - Nmap
   - HTTP
   - HTML
-  - C
-  - Enumeration Usernames
-  - Force Brute Passwords
+  - Bypass Authenticacion
 ---
 
 ![](/assets/images/Cyber1/image001.png)
