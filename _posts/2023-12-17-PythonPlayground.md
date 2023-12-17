@@ -16,17 +16,15 @@ tags:
   - OpenVPN
   - Nmap
   - SSH
-  - Fla
   - RCE
-  - SSTI
+  - JavaScript
   - Python
   - HTTP
   - HTML
-  - MySQL
-  - Flask
-  - Logstash
-  - Linpeas
+  - Node.js
+  - Docker
   - Gobuster
+  - mount 
 ---
 
 ![](/assets/images/Docker/image001.png)
