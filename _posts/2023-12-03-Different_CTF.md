@@ -23,7 +23,7 @@ tags:
   - Ghidra
   - hexeditor	
   - ltrace
-  - WpScan
+  - WPScan
   - Steghide
   - Stegcracker
   - CMS Wordpress
