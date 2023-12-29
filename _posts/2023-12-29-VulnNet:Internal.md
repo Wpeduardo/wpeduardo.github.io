@@ -5,7 +5,7 @@ excerpt: "Debemos encontrar 3 banderas. Primero, a partir de un escaneo de puert
 date: 2023-12-29	
 classes: wide
 header:
-  teaser: /assets/images/Pivoting/image003.jpg
+  teaser: /assets/images/Pivoting/image003.png
   teaser_home_page: true
   icon: /assets/images/descarga7.webp
 categories:
