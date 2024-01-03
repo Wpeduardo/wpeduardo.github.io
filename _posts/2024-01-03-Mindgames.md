@@ -1,8 +1,8 @@
 ---
 layout: single
-title: Break Out The Cage - TryHackMe
+title: Mindgames - TryHackMe
 excerpt: "Debemos encontrar 2 bandera. Primero, a partir de un escaneo de puertos pude saber que había un servidor web que alojaba una aplicación web que contaba de un formulario con un campo donde podías ingresar código en BrainFuck que luego iba a ser traducido a código en Python e iba a ser ejecutado, por lo tanto, aprovechando que la librería os y sus métodos logro ejecutar comandos en el sistema operativo del sistema destino con el fin de ejecutar una reverse Shell. Luego, para la escalada de privilegio vertical, aproveche que el archivo binario openssl tenía asignado el capability `cap_setuid`, logrando obtener los privilegios de root. Además, el procedimiento de la escalada de privilegio vertical a partir del uso del binario openssl esta mejor detallada en el articulo `https://chaudhary1337.github.io/p/how-to-openssl-cap_setuid-ep-privesc-exploit/`."
-date: 2023-01-03	
+date: 2024-01-03	
 classes: wide
 header:
   teaser: /assets/images/MindGame/image003.png
