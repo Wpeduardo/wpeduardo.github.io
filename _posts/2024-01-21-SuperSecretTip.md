@@ -2,7 +2,7 @@
 layout: single
 title: Super Secret Tip - TryHackMe
 excerpt: "Debemos encontrar 2 banderas. Primero, a partir de un escaneo de puertos pude saber que un servidor FTP permitía conexiones anónimas,logrando enumerar un recurso compartido que contenía un mensaje codificado con Base64 y Vigenere. Además, para conocer la clave utilizada en el cifrado Vigenere, observe el espectrograma de un archivo de audio, que fue encontrado a partir de una fuerza bruta de directorios desde el directorio raíz del servidor web. Luego, de decodificar y descifrar el mensaje, logre saber el password de un usuario local del sistema destino. Luego, en la escalada de privilegio horizontal, aproveche que un script Python era ejecutado de manera periódica y automatizada con los privilegios de un usuario local, logrando realizar un Command Injection para ejecutar una reverse Shell con los privilegios de dicho usuario. Luego, en la escalada de privilegios vertical, aproveche que el usuario pertenencia al grupo secundario lxd para ejecutar un contenedor donde se ejecuta una Shell Bash con privilegios de root, y monte el directorio raíz del sistema anfitrión en uno de sus directorios."
-date: 2023-12-21
+date: 2024-01-21
 classes: wide
 header:
   teaser: /assets/images/Secure/image003.png
