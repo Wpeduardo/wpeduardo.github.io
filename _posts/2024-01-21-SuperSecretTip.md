@@ -204,19 +204,19 @@ De esta manera logramos ser el usuario root mediante una tarea cron establecido 
 
 Podemos observar que la bandera esta en formato de bytes. Ademas, hay un archivo llamado secret.txt que esta en formato bytes. Debido a que ambos estaban en formato bye pense que deberia realizar una operación XOR con ambos valores para obtener la bandera autetntica, pero no fue una conjetura correcta. Ademas, otra suposion es que ambas sean el resultado de alguna operación XOR, por lo que deberiamos encontrar la clave utilizada en la operación XOR. Para ello tenemos el siguiente archivo de texto cuyo contenido no tiene un mensaje claro pero al final hace enfasis en la palabra root.
 
-![](/assets/images/Secure/image087.png)
+![](/assets/images/Secure/image130.png)
 
-Ahora supondremso que la clave es root, e intentaremos obtener la data en texto plano de las secuencias de bytes de alguno de los archivos secret o flag2.txt .
+Ahora supondremos que la clave es root, e intentaremos obtener la data en texto plano de las secuencias de bytes de alguno de los archivos secret o flag2.txt .
 
-![](/assets/images/Secure/image089.png)
+![](/assets/images/Secure/image132.png)
 
-![](/assets/images/Secure/image091.png)
+![](/assets/images/Secure/image134.png)
 
 Podemos observar que cuando aplicamos la operación XOR sobre la secuencia de bytes de “secret.txt” se obtiene un secuencia de numeros pero sus ultimos dos digitos estan ocultos. Para encontrar los ultimos par de digitos crearemos un script en Python que realizara fuerza bruta para encontrar el par de digitos correctos que nos una flag lo mas legible posible.
 
-![](/assets/images/Secure/image093.png)
+![](/assets/images/Secure/image136.png)
 
-![](/assets/images/Secure/image095.png)
+![](/assets/images/Secure/image138.png)
 
 
 
